@@ -1,0 +1,249 @@
+.headers on
+.mode columns
+PRAGMA foreign_keys = ON;
+
+ create table Student(
+    Student_ID 	Integer primary key not null,
+    Student_Name text,
+	Student_Email text	  
+);
+
+ create table Teacher(
+    Teacher_ID Integer primary key not null,
+    Teacher_Name text,
+	Teacher_Email text	
+);
+
+ create table course(
+    Course_ID Integer primary key not null,
+    Course_Name text 
+);
+
+create table Block(
+    Block_ID Integer primary key not null,
+	Block_Name text,
+	Start_date text,
+	End_Date Text,
+	Year Integer
+);
+
+ create table Course_Schedule(
+   Course_Schedule_ID Integer primary key not null,
+    Course_ID Integer,
+    Block_ID Integer,
+    Teacher_ID Integer,
+	foreign key (Course_ID) references Course (Course_ID),
+    foreign key (Block_ID) references Block(Block_ID),
+    foreign key (Teacher_ID) references Teacher(Teacher_ID)
+);
+
+ create table Enrollment(
+    Enrollment_ID Integer primary key not null,
+	Grade Text,
+	Course_Schedule_ID Integer,
+	Student_ID Integer,
+	foreign key (Course_Schedule_ID) references Course_Schedule (Course_Schedule_ID),
+	foreign key (Student_ID) references Student(Student_ID)
+);
+
+-- Student data
+
+INSERT INTO Student (Student_ID, Student_Name, Student_Email) VALUES (1, 'Paras', 'paras@example.com');
+INSERT INTO Student (Student_ID, Student_Name, Student_Email) VALUES (2, 'Priya Sharma', 'priya.sharma@example.com');
+INSERT INTO Student (Student_ID, Student_Name, Student_Email) VALUES (3, 'Prabhjot Singh', 'prabhjot.singh@example.com');
+INSERT INTO Student (Student_ID, Student_Name, Student_Email) VALUES (4, 'Karan Sharma', 'karan.sharma@example.com');
+INSERT INTO Student (Student_ID, Student_Name, Student_Email) VALUES (5, 'Vikas Gupta', 'vikas.gupta@example.com');
+INSERT INTO Student (Student_ID, Student_Name, Student_Email) VALUES (6, 'Harman Singh', 'harman.singh@example.com');
+INSERT INTO Student (Student_ID, Student_Name, Student_Email) VALUES (7, 'Sehbaj', 'sehbaj@example.com');
+INSERT INTO Student (Student_ID, Student_Name, Student_Email) VALUES (8, 'Harpreet Kaur', 'harpreet.kaur@example.com');
+INSERT INTO Student (Student_ID, Student_Name, Student_Email) VALUES (9, 'Adam Smith', 'adam.smith@example.com');
+INSERT INTO Student (Student_ID, Student_Name, Student_Email) VALUES (10, 'Manpreet Kaur', 'manpreet.kaur@example.com');
+
+
+-- Teacher data
+
+INSERT INTO Teacher (Teacher_ID, Teacher_Name, Teacher_Email) VALUES (21, 'James Brown', 'james.brown@example.com');
+INSERT INTO Teacher (Teacher_ID, Teacher_Name, Teacher_Email) VALUES (22, 'David Wilson', 'david.wilson@example.com');
+INSERT INTO Teacher (Teacher_ID, Teacher_Name, Teacher_Email) VALUES (23, 'Gurdeep Singh', 'gurdeep.singh@example.com');
+INSERT INTO Teacher (Teacher_ID, Teacher_Name, Teacher_Email) VALUES (24, 'Anita Roy', 'anita.roy@example.com');
+INSERT INTO Teacher (Teacher_ID, Teacher_Name, Teacher_Email) VALUES (25, 'Vivek Sharma', 'vivek.sharma@example.com');
+INSERT INTO Teacher (Teacher_ID, Teacher_Name, Teacher_Email) VALUES (26, 'Hardeep Singh', 'hardeep.singh@example.com');
+INSERT INTO Teacher (Teacher_ID, Teacher_Name, Teacher_Email) VALUES (27, 'Sneha Patel', 'sneha.patel@example.com');
+INSERT INTO Teacher (Teacher_ID, Teacher_Name, Teacher_Email) VALUES (28, 'Sunita Williams', 'sunita.williams@example.com');
+
+-- Course data
+
+INSERT INTO Course (Course_ID, Course_Name) VALUES (31, 'Introduction to Programming');
+INSERT INTO Course (Course_ID, Course_Name) VALUES (32, 'Devices and Platform');
+INSERT INTO Course (Course_ID, Course_Name) VALUES (33, 'Database Management Systems');
+INSERT INTO Course (Course_ID, Course_Name) VALUES (34, 'Web Development');
+INSERT INTO Course (Course_ID, Course_Name) VALUES (35, 'Computer Networks');
+INSERT INTO Course (Course_ID, Course_Name) VALUES (36, 'Operating Systems');
+INSERT INTO Course (Course_ID, Course_Name) VALUES (37, 'Maths for IT');
+INSERT INTO Course (Course_ID, Course_Name) VALUES (38, 'Artificial Intelligence');
+
+
+-- Block data
+
+INSERT INTO Block (Block_ID, Block_Name, Start_date, End_Date, Year) VALUES (41, 'Block 1', '2024-01-01', '2024-03-31', 2024);
+INSERT INTO Block (Block_ID, Block_Name, Start_date, End_Date, Year) VALUES (42, 'Block 2', '2024-04-01', '2024-06-30', 2024);
+INSERT INTO Block (Block_ID, Block_Name, Start_date, End_Date, Year) VALUES (43, 'Block 3', '2024-07-01', '2024-09-30', 2024);
+INSERT INTO Block (Block_ID, Block_Name, Start_date, End_Date, Year) VALUES (44, 'Block 4', '2024-10-01', '2024-12-31', 2024);
+
+
+-- Course_Shedule data
+
+-- Block 1
+INSERT INTO Course_Schedule (Course_Schedule_ID, Course_ID, Block_ID, Teacher_ID) VALUES (51, 31, 41, 21); 
+INSERT INTO Course_Schedule (Course_Schedule_ID, Course_ID, Block_ID, Teacher_ID) VALUES (52, 32, 41, 22);  
+
+-- Block 2
+INSERT INTO Course_Schedule (Course_Schedule_ID, Course_ID, Block_ID, Teacher_ID) VALUES (53, 33, 42, 23);  
+INSERT INTO Course_Schedule (Course_Schedule_ID, Course_ID, Block_ID, Teacher_ID) VALUES (54, 34, 42, 24);  
+
+-- Block 3
+INSERT INTO Course_Schedule (Course_Schedule_ID, Course_ID, Block_ID, Teacher_ID) VALUES (55, 35, 43, 25);  
+INSERT INTO Course_Schedule (Course_Schedule_ID, Course_ID, Block_ID, Teacher_ID) VALUES (56, 36, 43, 26);  
+
+-- Block 4
+INSERT INTO Course_Schedule (Course_Schedule_ID, Course_ID, Block_ID, Teacher_ID) VALUES (57, 37, 44, 27); 
+INSERT INTO Course_Schedule (Course_Schedule_ID, Course_ID, Block_ID, Teacher_ID) VALUES (58, 38, 44, 28);  
+
+
+-- Enrollment data
+
+-- Block 1 (Students taking courses 31 and 32)
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (61, 'A', 51, 1);  
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (62, 'B+', 52, 1); 
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (63, 'A-', 51, 2);  
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (64, 'B', 52, 2);  
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (65, 'B+', 51, 3); 
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (66, 'A-', 52, 3);  
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (67, 'A', 51, 4);   
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (68, 'B+', 52, 4);  
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (69, 'A-', 51, 5);  
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (70, 'B', 52, 5);   
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (71, 'B-', 51, 6);  
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (72, 'B+', 52, 6);  
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (73, 'A', 51, 7);   
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (74, 'B+', 52, 7);  
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (75, 'B-', 51, 8);
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (76, 'B+', 52, 8);  
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (77, 'A-', 51, 9);  
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (78, 'A', 52, 9);
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (79, 'B', 51, 10);  
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (80, 'A-', 52, 10); 
+
+
+-- Block 2 (Students taking courses 33 and 34)
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (81, 'A-', 53, 1); 
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (82, 'B', 54, 1);   
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (83, 'A', 53, 2);   
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (84, 'B+', 54, 2);  
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (85, 'A-', 53, 3);  
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (86, 'B', 54, 3);  
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (87, 'A', 53, 4);   
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (88, 'B+', 54, 4);  
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (89, 'A-', 53, 5);  
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (90, 'B', 54, 5);   
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (91, 'A', 53, 6);  
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (92, 'B+', 54, 6); 
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (93, 'A-', 53, 7);  
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (94, 'B', 54, 7);   
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (95, 'A', 53, 8);   
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (96, 'B+', 54, 8); 
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (97, 'A-', 53, 9);  
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (98, 'B', 54, 9);   
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (99, 'A', 53, 10);   
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (100, 'B+', 54, 10);  
+
+
+-- Block 3 (Students taking courses 35 and 36)
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (101, 'B-', 55, 1); 
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (102, 'B+', 56, 1); 
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (103, 'A-', 55, 2); 
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (104, 'B', 56, 2); 
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (105, 'A-', 55, 3); 
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (106, 'B-', 56, 3); 
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (107, 'B-', 55, 4); 
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (108, 'A+', 56, 4); 
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (109, 'A-', 55, 5); 
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (110, 'A+', 56, 5); 
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (111, 'B-', 55, 6); 
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (112, 'B+', 56, 6); 
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (113, 'A-', 55, 7); 
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (114, 'B+', 56, 7); 
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (115, 'B-', 55, 8); 
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (116, 'B+', 56, 8); 
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (117, 'B-', 55, 9); 
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (118, 'A+', 56, 9); 
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (119, 'B-', 55, 10); 
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (120, 'A+', 56, 10); 
+
+
+
+-- Block 4 (Students taking courses 37 and 38)
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (121, 'A', 57, 1); 
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (122, 'A+', 58, 1);  
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (123, 'A-', 57, 2); 
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (124, 'A+', 58, 2);  
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (125, 'B', 57, 3); 
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (126, 'A', 58, 3);  
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (127, 'A', 57, 4); 
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (128, 'B-', 58, 4);  
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (129, 'A-', 57, 5); 
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (130, 'A+', 58, 5);  
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (131, 'B-', 57, 6); 
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (132, 'A+', 58, 6);  
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (133, 'A-', 57, 7); 
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (134, 'A+', 58, 7);  
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (135, 'A-', 57, 8); 
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (136, 'B-', 58, 8);  
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (137, 'B-', 57, 9); 
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (138, 'B', 58, 9);  
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (139, 'A-', 57, 10); 
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (140, 'A+', 58, 10);  
+
+
+
+

@@ -1,0 +1,83 @@
+
+                                                                user stories                                                                          
+ 
+As a student, I want to update my contact information, including email, address, and phone number, so that I can receive correct information from the college and stay informed about new announcements and important updates without any difficulty.After processing the updates, the system provides a confirmation message or notification indicating that the contact information has been successfully updated.
+
+As a student, I want to view my grades , including scores on individual assignments or exam 
+so that can easily monitor my academic progress and performance helping me stay on track with  my educatinal goals. if any cases grades are not yet available, the system displays a message indicating when grades will be posted as well as If the student encounters problems accessing their grades, they may need to contact support or academic services.
+
+
+As a student, I want to check out library books , articals ,journals, or other resources like electonics books access through a web viewer or application. If the resource is hosted on an external platform, the student may need to log in to that platform. so that I can easily access academic materials without visiting the library in person.
+
+uses cases 
+Update Home Address 
+Update Email Address 
+Update Phone Number
+Handle Confirmation of Email Update  
+Handle Confirmation of Phone Number Update
+
+View Overall Grades 
+View Detailed Assignment and Exam Scores   
+Check Grade Status for a Specific Course   
+View Academic Progress Summary  
+Contact Support for Grade Issues
+
+ 
+Search for Library Resources 
+Check Out an Electronic Book 
+Access a Journal Article  
+Reserve a Physical Library Book  
+Request Assistance for Resource Access
+
+functional 
+Functional Requirements:
+➤ Ability to store and manage student information, including personal details, academic courses and activities, and schedules. Use Cases
+Ability to schedule classes and register students for classes.
+➤ Ability to create and manage student and parent profiles, including their contact information.
+➤ Ability to manage after-school activities and its instructors.
+➤ Ability to provide a user-friendly interface for all system users
+
+
+Non- functional
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+																  
+																  
+ 
+ 

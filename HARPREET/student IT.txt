@@ -1,0 +1,206 @@
+	
+.headers on
+.mode columns
+PRAGMA foreign_keys = ON;
+
+ create table Student(
+    Student_ID 	Integer primary key not null,
+    Student_Name text,
+	Student_Email text	  
+);
+
+ create table Teacher(
+    Teacher_ID Integer primary key not null,
+    Teacher_Name text,
+	Teacher_Email text	
+);
+
+ create table course(
+    Course_ID Integer primary key not null,
+    Course_Name text 
+);
+
+create table Block(
+    Block_ID Integer primary key not null,
+	Block_Name text,
+	Start_date text,
+	End_Date Text,
+	Year Integer
+);
+
+ create table Course_Schedule(
+   Course_Schedule_ID Integer primary key not null,
+    Course_ID Integer,
+    Block_ID Integer,
+    Teacher_ID Integer,
+	foreign key (Course_ID) references Course (Course_ID),
+    foreign key (Block_ID) references Block(Block_ID),
+    foreign key (Teacher_ID) references Teacher(Teacher_ID)
+);
+
+ create table Enrollment(
+    Enrollment_ID Integer primary key not null,
+	Grade Text,
+	Course_Schedule_ID Integer,
+	Student_ID Integer,
+	foreign key (Course_Schedule_ID) references Course_Schedule (Course_Schedule_ID),
+	foreign key (Student_ID) references Student(Student_ID)
+);
+
+
+
+INSERT INTO Student (Student_ID, Student_Name, Student_Email) VALUES (1, 'Amit Kumar', 'amit.kumar@example.com');
+INSERT INTO Student (Student_ID, Student_Name, Student_Email) VALUES (2, 'Priya Sharma', 'priya.sharma@example.com');
+INSERT INTO Student (Student_ID, Student_Name, Student_Email) VALUES (3, 'Ravi Singh', 'ravi.singh@example.com');
+INSERT INTO Student (Student_ID, Student_Name, Student_Email) VALUES (4, 'Mark Henry', 'mark.henry@example.com');
+INSERT INTO Student (Student_ID, Student_Name, Student_Email) VALUES (5, 'Vikas Gupta', 'vikas.gupta@example.com');
+INSERT INTO Student (Student_ID, Student_Name, Student_Email) VALUES (6, 'Harman Singh', 'harman.singh@example.com');
+INSERT INTO Student (Student_ID, Student_Name, Student_Email) VALUES (7, 'Rahul Joshi', 'rahul.joshi@example.com');
+INSERT INTO Student (Student_ID, Student_Name, Student_Email) VALUES (8, 'Hardeep Singh', 'hardeep.singh@example.com');
+INSERT INTO Student (Student_ID, Student_Name, Student_Email) VALUES (9, 'Adam Smith', 'adam.smith@example.com');
+INSERT INTO Student (Student_ID, Student_Name, Student_Email) VALUES (10, 'Manpreet Kaur', 'manpreet.kaur@example.com');
+
+INSERT INTO Teacher (Teacher_ID, Teacher_Name, Teacher_Email) VALUES (11, 'James Brown', 'james.brown@example.com');
+INSERT INTO Teacher (Teacher_ID, Teacher_Name, Teacher_Email) VALUES (12, 'Davis Wilson', 'david.wilson@example.com');
+INSERT INTO Teacher (Teacher_ID, Teacher_Name, Teacher_Email) VALUES (13, 'Gurdeep Singh', 'gurdeep.singh@example.com');
+INSERT INTO Teacher (Teacher_ID, Teacher_Name, Teacher_Email) VALUES (14, 'Anita Roy', 'anita.roy@example.com');
+INSERT INTO Teacher (Teacher_ID, Teacher_Name, Teacher_Email) VALUES (15, 'Vivek Sharma', 'vivek.sharma@example.com');
+
+INSERT INTO Course (Course_ID, Course_Name) VALUES (201, 'Introduction to Programming');
+INSERT INTO Course (Course_ID, Course_Name) VALUES (202, 'Data Structures');
+INSERT INTO Course (Course_ID, Course_Name) VALUES (203, 'Database Management Systems');
+INSERT INTO Course (Course_ID, Course_Name) VALUES (204, 'Web Development');
+INSERT INTO Course (Course_ID, Course_Name) VALUES (205, 'Computer Networks');
+INSERT INTO Course (Course_ID, Course_Name) VALUES (206, 'Operating Systems');
+INSERT INTO Course (Course_ID, Course_Name) VALUES (207, 'Software Engineering');
+INSERT INTO Course (Course_ID, Course_Name) VALUES (208, 'Cybersecurity');
+INSERT INTO Course (Course_ID, Course_Name) VALUES (209, 'Artificial Intelligence');
+INSERT INTO Course (Course_ID, Course_Name) VALUES (210, 'Cloud Computing');
+INSERT INTO Course (Course_ID, Course_Name) VALUES (211, 'Mobile Application Development');
+INSERT INTO Course (Course_ID, Course_Name) VALUES (212, 'Studio');
+INSERT INTO Course (Course_ID, Course_Name) VALUES (213, 'Introduction to Network');
+INSERT INTO Course (Course_ID, Course_Name) VALUES (214, 'Human-Computer Interaction');
+INSERT INTO Course (Course_ID, Course_Name) VALUES (215, 'Internet of Things');
+
+INSERT INTO Block (Block_ID, Block_Name, Start_date, End_Date, Year) VALUES (101, 'Block 1', '2024-01-01', '2024-03-31', 2024);
+INSERT INTO Block (Block_ID, Block_Name, Start_date, End_Date, Year) VALUES (102, 'Block 2', '2024-04-01', '2024-06-30', 2024);
+INSERT INTO Block (Block_ID, Block_Name, Start_date, End_Date, Year) VALUES (103, 'Block 3', '2024-07-01', '2024-09-30', 2024);
+INSERT INTO Block (Block_ID, Block_Name, Start_date, End_Date, Year) VALUES (104, 'Block 4', '2024-10-01', '2024-12-31', 2024);
+
+INSERT INTO Course_Schedule (Course_Schedule_ID, Course_ID, Block_ID, Teacher_ID) VALUES (301, 201, 101, 11);
+INSERT INTO Course_Schedule (Course_Schedule_ID, Course_ID, Block_ID, Teacher_ID) VALUES (302, 202, 102, 12);
+INSERT INTO Course_Schedule (Course_Schedule_ID, Course_ID, Block_ID, Teacher_ID) VALUES (303, 203, 103, 13);
+INSERT INTO Course_Schedule (Course_Schedule_ID, Course_ID, Block_ID, Teacher_ID) VALUES (304, 204, 104, 14);
+INSERT INTO Course_Schedule (Course_Schedule_ID, Course_ID, Block_ID, Teacher_ID) VALUES (305, 205, 101, 15);
+
+
+
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (401, 'A', 301, 1);
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (402, 'B+', 302, 2);
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (403, 'A-', 303, 3);
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (404, 'B', 304, 4);
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (405, 'A+', 305, 5);
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (406, 'B-', 301, 6);
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (407, 'C', 302, 7);
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (408, 'B+', 303, 8);
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (409, 'A', 304, 9);
+INSERT INTO Enrollment (Enrollment_ID, Grade, Course_Schedule_ID, Student_ID) VALUES (410, 'A-', 305, 10
+
+SELECT 
+    Student.Student_Name, 
+    Student.Student_Email, 
+    Course.Course_Name, 
+    Enrollment.Grade, 
+    Teacher.Teacher_Name
+FROM 
+    Enrollment
+JOIN 
+    Student ON Enrollment.Student_ID = Student.Student_ID
+JOIN 
+    Course_Schedule ON Enrollment.Course_Schedule_ID = Course_Schedule.Course_Schedule_ID
+JOIN 
+    Course ON Course_Schedule.Course_ID = Course.Course_ID
+JOIN 
+    Teacher ON Course_Schedule.Teacher_ID = Teacher.Teacher_ID;
+	
+	
+	SELECT 
+    Course.Course_Name, 
+    Teacher.Teacher_Name
+FROM 
+    Course_Schedule
+JOIN 
+    Course ON Course_Schedule.Course_ID = Course.Course_ID
+JOIN 
+    Teacher ON Course_Schedule.Teacher_ID = Teacher.Teacher_ID;
+
+
+SELECT 
+    Student.Student_Name, 
+    Student.Student_Email, 
+    Enrollment.Grade
+FROM 
+    Enrollment
+JOIN 
+    Student ON Enrollment.Student_ID = Student.Student_ID
+JOIN 
+    Course_Schedule ON Enrollment.Course_Schedule_ID = Course_Schedule.Course_Schedule_ID
+WHERE 
+    Course_Schedule.Course_ID = 201; -- Replace 201 with the desired Course_ID
+
+
+SELECT 
+    Course.Course_Name
+FROM 
+    Course_Schedule
+JOIN 
+    Course ON Course_Schedule.Course_ID = Course.Course_ID
+WHERE 
+    Course_Schedule.Block_ID = 101; -- Replace 101 with the desired Block_ID
+	
+	
+	SELECT 
+    Teacher.Teacher_Name, 
+    Course.Course_Name
+FROM 
+    Course_Schedule
+JOIN 
+    Teacher ON Course_Schedule.Teacher_ID = Teacher.Teacher_ID
+JOIN 
+    Course ON Course_Schedule.Course_ID = Course.Course_ID;
+
+
+
+SELECT 
+    Student.Student_Name, 
+    Student.Student_Email, 
+    Course.Course_Name, 
+    Enrollment.Grade, 
+    Block.Block_Name, 
+    Teacher.Teacher_Name
+FROM 
+    Enrollment
+JOIN 
+    Student ON Enrollment.Student_ID = Student.Student_ID
+JOIN 
+    Course_Schedule ON Enrollment.Course_Schedule_ID = Course_Schedule.Course_Schedule_ID
+JOIN 
+    Course ON Course_Schedule.Course_ID = Course.Course_ID
+JOIN 
+    Teacher ON Course_Schedule.Teacher_ID = Teacher.Teacher_ID
+JOIN 
+    Block ON Course_Schedule.Block_ID = Block.Block_ID;
+
+
+
+sort by ascs, decs
+grouping
+updating
+delete
+inner join
+outer join
+select Student.Student_Name,Student.Student_Email from Student;
+
+
+
+	
